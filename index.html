@@ -1,22 +1,68 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">   -->
-  <link rel="stylesheet" href="./styles.css">
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>      
-  <script defer src="https://use.fontawesome.com/releases/v5.0.0/js/all.js"></script>
-  <title>beerMe</title>
-</head>
-<body>
-  <h1>beerMe</h1>
-  <input type="text" id="beerInput">
-  <button onclick="showBeer()">Show</button>
-  <h3 id="beerToSearch"></h3>
-  <div id="beerResults"></div>
-  <div id="suggestedStyles"></div>
-  <script src="app.js"></script>      
-</body>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>Beer.me</title>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+      <link rel="stylesheet" href="./styles.css">
+      <script src="https://unpkg.com/axios/dist/axios.min.js"></script>         
+      <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+   </head>
+   <body>
+      <section class="hero is-warning">
+         <div class="hero-body">
+            <div class="container">
+               <h1 class="title has-text-centered">
+                  Beer.me
+               </h1>
+               <p class="subtitle has-text-centered">
+                  Look up some brews, find some new ones.
+               </p>
+            </div>
+         </div>
+      </section>
+      <section class="section">
+         <div class="container">
+            <div class="field is-grouped is-grouped-centered">
+               <div class="control">
+                  <input class="input" type="text" id="beerInput" placeholder="Type in a beer">
+               </div>
+               <div class="control">
+                  <button onclick="showBeer()" class="button is-warning">Search</button>
+               </div>               
+            </div>
+            <h2 id="beerToSearch" class="has-text-centered">BeerBeerBeerBeer</h2>
+            <div id="beerResults"></div>
+            <div class="columns has-text-centered">
+                <div class="column is-one-third" id="c1">
+                    <!-- <div class="card">
+                        <header class="card-header">
+                          <p class="card-header-title">
+                            Sour Ale
+                          </p>
+                        </header>
+                        <div class="card-content">
+                          <div class="content">
+                            <strong>ABV: 8.0%</strong>
+                            <br>
+                            It is a very tasty beer.
+                            <br>
+                          </div>
+                        </div>
+                        <footer class="card-footer">
+                          <a href="#" class="card-footer-item">Search on DuckDuckGo</a>
+                        </footer>
+                      </div>     -->
+                </div>
+                <div class="column" id="c2">
+                </div>
+                <div class="column" id="c3">                
+                  </div>                
+              </div>            
+              <div id="suggestedStyles"></div>              
+         </div>     
+         <script src="app.js"></script>          
+      </section>
+   </body>
 </html>
