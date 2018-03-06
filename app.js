@@ -4,6 +4,8 @@
 let beerInput;
 let beerToSearch = document.getElementById('beerToSearch');
 let beerResults = document.getElementById('beerResults');
+let suggestedStyles = document.getElementById('suggestedStyles');
+let beerStyles = [];
 
 let showBeer = () => {
   beerInput = document.getElementById('beerInput');
@@ -11,6 +13,8 @@ let showBeer = () => {
   beerInput.value = '';
   beerResults.innerHTML = '';
   searchBeer(beerToSearch.innerText);
+  suggestedStyles.innerHTML = '';
+  beerStyles = [];
 }
 
 let searchBeer = (b) => {
@@ -25,7 +29,6 @@ let searchBeer = (b) => {
       beerData.slice(0,5).map( beer => {
       let beerName = document.createElement('div');
       let beerAbv = document.createElement('p');
-      let beerImg = document.createElement('p');
       let beerDescription = document.createElement('p');
       beerName.textContent = beer.nameDisplay;
       beerDescription.innerHTML = 'Description';
@@ -36,27 +39,20 @@ let searchBeer = (b) => {
       } else {
         beerDescription.textContent = beerDescription.innerHTML + ': ' + beer.description;
       }
-      beerImg.textContent = beer.style.name;
+      beerStyles.push(beer.style.name);
       beerResults.appendChild(beerName);
       beerName.appendChild(beerAbv);
       beerAbv.appendChild(beerDescription);
-      beerDescription.appendChild(beerImg);
     })
     }
-    console.log(response.data.data);
+    beerStyles.map(b => {
+      let hi = document.createElement('p');
+      hi.innerHTML = b;
+      suggestedStyles.appendChild(hi);
+    })    
+    console.log(beerData);    
   })
   .catch(function (error) {
     console.log(error);
   });
 }
-
-
-
-// abv
-// description
-// labels.medium (size it at 150 x 150)
-// style.name
-
-// Similar pairings 
-// // style.category.id 
-// style.category.name or style.name or style.shortName
