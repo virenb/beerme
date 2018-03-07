@@ -3,8 +3,9 @@
 
 /*
 Notes-
-Need to add footer to card
+Create footer link to search
 Make more dynamic? If few results (under 6)?, change columns?
+if undefined remove result
 */
 
 let beerInput;
@@ -46,16 +47,20 @@ let searchBeer = (b) => {
       let beerContent = document.createElement('div');
       let beerAbv = document.createElement('p');
       let beerDescription = document.createElement('p');
+      let beerFooter = document.createElement('footer');
+      let beerFooterSearch = document.createElement('a');      
       beerCard.setAttribute('class', 'card');
       beerCardHeader.setAttribute('class', 'card-header');
       beerName.setAttribute('class', 'card-header-title');
       beerCardContent.setAttribute('class', 'card-content');
       beerContent.setAttribute('class', 'content');
-      
+      beerFooter.setAttribute('class', 'card-footer');
+      beerFooterSearch.setAttribute('class', 'card-footer-item');
       beerName.textContent = beer.nameDisplay;
       beerAbv.innerHTML = 'ABV:';
       beerAbv.textContent = beerAbv.innerHTML + ' ' + beer.abv;
       beerDescription.innerHTML = 'Description:';
+      beerFooterSearch.innerHTML = 'hihihi';
       if (beer.description === undefined) {
         beerDescription.textContent = 'Description is unavailble.'
       } else {
@@ -69,7 +74,9 @@ let searchBeer = (b) => {
         beerCardHeader.appendChild(beerName);
         beerCardContent.appendChild(beerContent);
         beerContent.appendChild(beerAbv);
-        beerAbv.appendChild(beerDescription);  
+        beerAbv.appendChild(beerDescription);
+        beerCard.insertBefore(beerFooter, beerCard.fifthChild);
+        beerFooter.appendChild(beerFooterSearch);
       } else if (beerStyles.length <= 4) {
         columnTwo.appendChild(beerCard);
         beerCard.appendChild(beerCardContent);
@@ -78,6 +85,8 @@ let searchBeer = (b) => {
         beerCardContent.appendChild(beerContent);
         beerContent.appendChild(beerAbv);
         beerAbv.appendChild(beerDescription);  
+        beerCard.insertBefore(beerFooter, beerCard.fifthChild);
+        beerFooter.appendChild(beerFooterSearch);       
       } else {
         columnThree.appendChild(beerCard);
         beerCard.appendChild(beerCardContent);
@@ -85,14 +94,16 @@ let searchBeer = (b) => {
         beerCardHeader.appendChild(beerName);
         beerCardContent.appendChild(beerContent);
         beerContent.appendChild(beerAbv);
-        beerAbv.appendChild(beerDescription);  
+        beerAbv.appendChild(beerDescription); 
+        beerCard.insertBefore(beerFooter, beerCard.fifthChild);
+        beerFooter.appendChild(beerFooterSearch);              
       } 
       console.log(beerStyles);
     })
     }
     beerStyles.map(b => {
       let hi = document.createElement('p');
-      hi.innerHTML = b;
+      hi.textContent = b;
       suggestedStyles.appendChild(hi);
     })    
     console.log(beerData);    
