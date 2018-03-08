@@ -27,7 +27,7 @@ let showBeer = () => {
 }
 
 let searchBeer = (b) => {
-  axios.get('http://api.brewerydb.com/v2/search?q=' + b + '&type=beer&key=69c8131efc2cb16e7997753319d8257d')
+  axios.get('https://api.brewerydb.com/v2/search?q=' + b + '&type=beer&key=69c8131efc2cb16e7997753319d8257d')
     .then(function(response) {
       let beerData = response.data.data;
       if (beerData === undefined) {
