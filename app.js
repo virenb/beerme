@@ -1,9 +1,3 @@
-/*
-Notes-
-Make more dynamic? If few results (under 6)?, change columns?
-if undefined remove result
-*/
-
 let beerInput;
 let beerToSearch = document.getElementById('beerToSearch');
 let beerResults = document.getElementById('beerResults');
@@ -97,6 +91,22 @@ let searchBeer = (b) => {
           console.log(beerStyles);
         })
       }
+      let styleDiv = document.createElement('div');
+      styleDiv.classList.add('tile', 'is-parent');
+      let articleElem = document.createElement('article');
+      articleElem.classList.add('tile', 'is-child', 'notification', 'is-warning');
+      let stylePara = document.createElement('p');
+      stylePara.className = 'title';
+      stylePara.innerHTML = 'Beer Styles';
+      let subtitlePara = document.createElement('p');
+      subtitlePara.className = 'subtitle';
+      subtitlePara.innerHTML = 'Based on your search, suggest these beer styles.';
+      document.getElementsByClassName('container')[1].appendChild(styleDiv);
+      // styleDiv.appendChild(articleElem);
+      // articleElem.appendChild(stylePara);
+      // styleDiv.insertBefore(articleElem, subtitlePara);
+      // subtitlePara.appendChild(suggestedStyles);
+
       beerStyles.map(b => {
         let styleParagraph = document.createElement('p');
         styleParagraph.textContent = b;
