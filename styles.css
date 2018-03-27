@@ -7,6 +7,10 @@ a {
   color: #4a4a4a;
 }
 
+#beerToSearch {
+  display: none;
+}
+
 .card {
   margin: 20px;
   background-color: #ffdd57;

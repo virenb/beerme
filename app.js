@@ -5,7 +5,11 @@ let suggestedStyles = document.getElementById('suggestedStyles');
 let columnOne = document.getElementById('c1');
 let columnTwo = document.getElementById('c2');
 let columnThree = document.getElementById('c3');
+let styleDiv = document.getElementById('styleDiv');
+let articleElem = document.getElementById('articleElem');
 let beerStyles = [];
+let stylePara = document.createElement('p');
+let subtitlePara = document.createElement('p');
 
 let showBeer = () => {
   beerInput = document.getElementById('beerInput');
@@ -18,6 +22,8 @@ let showBeer = () => {
   searchBeer(beerToSearch.innerText);
   suggestedStyles.innerHTML = '';
   beerStyles = [];
+  styleDiv.innerHTML = '';
+  articleElem.innerHTML = '';
 }
 
 let searchBeer = (b) => {
@@ -25,10 +31,11 @@ let searchBeer = (b) => {
     .then(function(response) {
       let beerData = response.data.data;
       if (beerData === undefined) {
-        beerResults.innerHTML = 'We couldn\'t find anything with that name, please search for someting else.'
-        console.log('no results');
+        beerResults.classList.add('tile', 'is-child', 'notification', 'is-warning');
+        beerResults.innerHTML = 'We couldn\'t find anything with that name, please search for someting else.';
       } else {
         beerData.slice(0, 6).map(beer => {
+          beerResults.classList.remove('tile', 'is-child', 'notification', 'is-warning');
           let beerCard = document.createElement('div');
           let beerCardHeader = document.createElement('header');
           let beerName = document.createElement('p');
@@ -38,6 +45,15 @@ let searchBeer = (b) => {
           let beerDescription = document.createElement('p');
           let beerFooter = document.createElement('footer');
           let beerFooterSearch = document.createElement('a');
+
+          styleDiv.classList.add('tile', 'is-parent');
+          articleElem.classList.add('tile', 'is-child', 'notification', 'is-warning');
+
+          stylePara.className = 'title';          
+
+          subtitlePara.className = 'subtitle';
+      
+
           beerCard.setAttribute('class', 'card');
           beerCardHeader.setAttribute('class', 'card-header');
           beerName.setAttribute('class', 'card-header-title');
@@ -50,6 +66,9 @@ let searchBeer = (b) => {
           beerAbv.textContent = beerAbv.innerHTML + ' ' + beer.abv + '%';
           beerDescription.innerHTML = 'Description:';
           beerFooterSearch.innerHTML = '<a href="https://encrypted.google.com/search?hl=en&q=' + beerName.textContent + ' beer' + '" target="_blank">Search on (Encrypted) Google</a>';
+
+
+      
 
           if (beer.description === undefined) {
             beerDescription.textContent = 'Description is unavailble.'
@@ -88,31 +107,22 @@ let searchBeer = (b) => {
             beerCard.insertBefore(beerFooter, beerCard.fifthChild);
             beerFooter.appendChild(beerFooterSearch);
           }
-          console.log(beerStyles);
         })
+        stylePara.innerHTML = 'Beer Styles';
+        subtitlePara.innerHTML = 'Based on your search, suggest these beer styles.';    
+        document.getElementsByClassName('container')[1].appendChild(styleDiv);
+        styleDiv.appendChild(articleElem);
+        articleElem.appendChild(subtitlePara);
+        articleElem.insertBefore(stylePara, subtitlePara);
+        articleElem.appendChild(suggestedStyles);    
       }
-      let styleDiv = document.createElement('div');
-      styleDiv.classList.add('tile', 'is-parent');
-      let articleElem = document.createElement('article');
-      articleElem.classList.add('tile', 'is-child', 'notification', 'is-warning');
-      let stylePara = document.createElement('p');
-      stylePara.className = 'title';
-      stylePara.innerHTML = 'Beer Styles';
-      let subtitlePara = document.createElement('p');
-      subtitlePara.className = 'subtitle';
-      subtitlePara.innerHTML = 'Based on your search, suggest these beer styles.';
-      document.getElementsByClassName('container')[1].appendChild(styleDiv);
-      // styleDiv.appendChild(articleElem);
-      // articleElem.appendChild(stylePara);
-      // styleDiv.insertBefore(articleElem, subtitlePara);
-      // subtitlePara.appendChild(suggestedStyles);
+
 
       beerStyles.map(b => {
         let styleParagraph = document.createElement('p');
         styleParagraph.textContent = b;
         suggestedStyles.appendChild(styleParagraph);
       })
-      console.log(beerData);
     })
     .catch(function(error) {
       console.log(error);
