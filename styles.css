@@ -1,9 +1,14 @@
-.card {
-  margin: 20px;
-  background-color: #ffdd57;
+html {
+  background-image: url("img/mugs.jpg");
 }
 
 a {
   text-decoration: none;
   color: #4a4a4a;
 }
+
+.card {
+  margin: 20px;
+  background-color: #ffdd57;
+}
+

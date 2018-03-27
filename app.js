@@ -98,9 +98,9 @@ let searchBeer = (b) => {
         })
       }
       beerStyles.map(b => {
-        let hi = document.createElement('p');
-        hi.textContent = b;
-        suggestedStyles.appendChild(hi);
+        let styleParagraph = document.createElement('p');
+        styleParagraph.textContent = b;
+        suggestedStyles.appendChild(styleParagraph);
       })
       console.log(beerData);
     })
