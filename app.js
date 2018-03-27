@@ -27,7 +27,7 @@ let showBeer = () => {
 }
 
 let searchBeer = (b) => {
-  axios.get('https://api.brewerydb.com/v2/search?q=' + b + '&type=beer&key=69c8131efc2cb16e7997753319d8257d')
+  axios.get('https://cors-anywhere.herokuapp.com/https://api.brewerydb.com/v2/search?q=' + b + '&type=beer&key=69c8131efc2cb16e7997753319d8257d')
     .then(function(response) {
       let beerData = response.data.data;
       if (beerData === undefined) {
@@ -45,15 +45,10 @@ let searchBeer = (b) => {
           let beerDescription = document.createElement('p');
           let beerFooter = document.createElement('footer');
           let beerFooterSearch = document.createElement('a');
-
           styleDiv.classList.add('tile', 'is-parent');
           articleElem.classList.add('tile', 'is-child', 'notification', 'is-warning');
-
           stylePara.className = 'title';          
-
           subtitlePara.className = 'subtitle';
-      
-
           beerCard.setAttribute('class', 'card');
           beerCardHeader.setAttribute('class', 'card-header');
           beerName.setAttribute('class', 'card-header-title');
@@ -66,9 +61,6 @@ let searchBeer = (b) => {
           beerAbv.textContent = beerAbv.innerHTML + ' ' + beer.abv + '%';
           beerDescription.innerHTML = 'Description:';
           beerFooterSearch.innerHTML = '<a href="https://encrypted.google.com/search?hl=en&q=' + beerName.textContent + ' beer' + '" target="_blank">Search on (Encrypted) Google</a>';
-
-
-      
 
           if (beer.description === undefined) {
             beerDescription.textContent = 'Description is unavailble.'
@@ -116,7 +108,6 @@ let searchBeer = (b) => {
         articleElem.insertBefore(stylePara, subtitlePara);
         articleElem.appendChild(suggestedStyles);    
       }
-
 
       beerStyles.map(b => {
         let styleParagraph = document.createElement('p');
